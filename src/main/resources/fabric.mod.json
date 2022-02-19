@@ -1,33 +1,40 @@
 {
-  "schemaVersion": 1,
-  "id": "chatembeds",
-  "version": "${version}",
+	"schemaVersion": 1,
+	"id": "chatembeds",
+	"version": "${version}",
 
-  "name": "Chat Embeds",
-  "description": "Embedded images and more in chat!",
-  "authors": [
-    "Yunus1903"
-  ],
-  "contact": {
-    "sources": "https://github.com/StartsMercury/ChatEmbeds",
-    "issues": "https://github.com/StartsMercury/ChatEmbeds/issues"
-  },
+	"name": "Chat Embeds",
+	"description": "Embedded images and more in chat!",
+	"authors": [
+		"Yunus1903"
+	],
+	"contact": {
+		"sources": "https://github.com/StartsMercury/ChatEmbeds",
+		"issues": "https://github.com/StartsMercury/ChatEmbeds/issues"
+	},
 
-  "license": "GNU General Public License v3.0",
-  "icon": "assets/chatembeds/icon.png",
+	"license": "GNU General Public License v3.0",
+	"icon": "assets/chatembeds/icon.png",
 
-  "environment": "*",
-  "entrypoints": {
-    "client": [
-    ]
-  },
-  "mixins": [
-    "chatembeds.mixins.json"
-  ],
+	"environment": "*",
+	"entrypoints": {
+		"client": [
+			"com.yunus1903.chatembeds.entrypoint.ChatEmbedsClientMod"
+		],
+		"modmenu": [
+			"com.yunus1903.chatembeds.entrypoint.ChatEmbedsModMenu"
+		]
+	},
+	"mixins": [
+		"chatembeds.mixins.json"
+	],
 
-  "depends": {
-    "fabricloader": ">=0.12.12",
-    "java": ">=17",
-    "minecraft": "1.18.x"
-  }
+	"depends": {
+		"fabricloader": ">=0.12.12",
+		"java": ">=17",
+		"minecraft": "1.18.x"
+	},
+	"suggests": {
+		"cloth-config": ">=6.2.57"
+	}
 }

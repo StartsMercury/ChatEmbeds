@@ -11,23 +11,71 @@ group = mod_group
 archivesBaseName = mod_name
 version = mod_version
 
+configurations {
+	includeImplementation
+	include              .extendsFrom includeImplementation
+	       implementation.extendsFrom includeImplementation
+}
+
 repositories {
-	// Add repositories to retrieve artifacts from in here.
-	// You should only use this when depending on other mods because
-	// Loom adds the essential maven repositories to download Minecraft and libraries from automatically.
-	// See https://docs.gradle.org/current/userguide/declaring_repositories.html
-	// for more information about repositories.
+	maven { url 'https://api.modrinth.com/maven'; content { includeGroup 'maven.modrinth' } }
+	maven { url 'https://cursemaven.com'; content { includeGroup 'curse.maven' } }
+	maven { url 'https://maven.gegy.dev/' }
+	maven { url 'https://maven.shedaniel.me/' }
+	maven { url 'https://maven.terraformersmc.com/' }
 }
 
 dependencies {
-	// Fabric Loader
-	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
+	ext {
+		fabricApiModRuntimeOnly = { def name, def version = fabric_api_version ->
+			return modRuntimeOnly(fabricApi.module(name, version))
+		}
+	}
 
+	// Cloth Config
+	modImplementation "me.shedaniel.cloth:cloth-config-fabric:${cloth_config_version}", {
+		exclude group: 'net.fabricmc.fabric-api'
+	}
+
+	// DataBreaker
+	modRuntimeOnly 'supercoder79:databreaker:0.2.8', {
+		exclude module: "fabric-loader"
+	}
+
+	// Fabric Rendering Data Attachment (v1)
+	fabricApiModRuntimeOnly 'fabric-rendering-data-attachment-v1'
+
+	// Fabric Rendering Fluids (v1)
+	fabricApiModRuntimeOnly 'fabric-rendering-fluids-v1'
+
+	// Fabric Loader
+	modImplementation "net.fabricmc:fabric-loader:${loader_version}"
+
+	// FerriteCore
+	modRuntimeOnly 'curse.maven:ferritecore-fabric-459857:3638441'
+
+	// JOML
+	runtimeOnly 'org.joml:joml:1.10.2'
+
+	// JSoup
+	includeImplementation 'org.jsoup:jsoup:1.14.3'
+	
 	// Minecraft
-	minecraft "com.mojang:minecraft:${project.minecraft_version}"
+	minecraft "com.mojang:minecraft:${minecraft_version}"
+	
+	// Mod Menu
+	modImplementation "com.terraformersmc:modmenu:${mod_menu_version}"
 
 	// Mojang Mappings
 	mappings loom.officialMojangMappings()
+
+	// Sodium
+	modRuntimeOnly 'maven.modrinth:sodium:mc1.18.1-0.4.0-alpha6'
+}
+
+loom.runConfigs.configureEach() {
+	vmArg '-Xmx1G'
+	property 'mixin.debug.export', 'true'
 }
 
 processResources {

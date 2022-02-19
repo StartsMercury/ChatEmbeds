@@ -1,0 +1,10 @@
+{
+	"chatembeds.config.main.imageEmbedsEnabled": "Image Embed Enabled",
+	"chatembeds.config.main.imageEmbedsAnimated": "Image Embed Animated",
+	"chatembeds.config.main.maxImageEmbedHeight": "Max Image Embed Height",
+	"chatembeds.config.main.maxImageEmbedWidth": "Max Image Embed Width",
+	"chatembeds.config.main.textEmbedsEnabled": "Text Embed Enabled",
+	"chatembeds.config.main.title": "Main",
+	"chatembeds.config.main.urlMessagesRemoved": "Url Messages Removed",
+	"chatembeds.config.title": "Chat Embeds Config"
+}
