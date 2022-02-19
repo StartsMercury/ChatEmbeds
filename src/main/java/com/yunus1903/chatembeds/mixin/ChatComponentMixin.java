@@ -45,7 +45,6 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraft.util.FormattedCharSequence;
 
-// https://cdn-icons-png.flaticon.com/512/25/25231.png
 @Mixin(ChatComponent.class)
 public class ChatComponentMixin {
 	private static final String URL_PATTERN = "((https?)://|(www)\\.)?[a-z0-9-]+(\\.[a-z0-9-]+)+([/?].*)?";
